@@ -1,0 +1,84 @@
+input:
+  source: offline
+  root: perception/data
+  rgb_dir: rgb
+  depth_dir: depth
+  rgb_file: null
+  depth_file: null
+  depth_kind: depression
+  depth_unit: mm
+  metadata_dir: null
+  metadata_file: null
+  metadata: {}
+  camera:
+    serial: null
+    warmup_frames: 30
+    crop_left: 100
+    crop_right: 100
+    max_range_m: 1.0
+    plane_threshold_m: 0.004
+    plane_iterations: 3000
+    T_base_flange: null
+perception:
+  weights: perception/best.pt
+  device: auto
+  threshold: 0.5
+  overlay_alpha: 0.5
+quantification:
+  min_component_length_px: 20.0
+  min_branch_length_px: 20.0
+  pca_neighbors: 11
+  ray_step_px: 0.25
+  max_ray_px: 256
+planning:
+  alpha: 2.52
+  beta: 3.35
+  rho: 0.04
+  ants: 10
+  iterations: 100
+  seed: 42
+  tau_min: 0.01
+  tau_max: 1.0
+control:
+  mode: plan
+  sdk_path: null
+  sdk_dt_s: 0.002
+  calibration_verified: false
+  capture_pose_verified: false
+  jacobian_verified: false
+  T_flange_camera: null
+  T_flange_nozzle: null
+  nozzle_rpy: null
+  safe_z_m: null
+  work_clearance_m: null
+  workspace_min_m: null
+  workspace_max_m: null
+  frequency_hz: 50
+  speed_m_s: 0.06
+  transfer_speed_m_s: 0.08
+  dls_damping: 0.02
+  max_joint_step_rad: 0.15
+  max_tracking_error_rad: 0.15
+  max_lateness_s: 0.1
+  arrival_timeout_s: 2.0
+  arrival_position_tolerance_m: 0.001
+  arrival_rotation_tolerance_rad: 0.01
+  pump:
+    port: null
+    baudrate: 9600
+    timeout_s: 1.0
+    slave: 1
+    speed_register: 86
+    operation_register: 102
+    register_units_per_rpm: null
+    forward_value: null
+    reverse_value: null
+    stop_value: 0
+    initialization_registers: []
+    flow_m3_s_per_rpm: null
+    fixed_rpm: null
+    max_rpm: null
+    reverse_rpm: null
+    reverse_seconds: null
+output:
+  root: control/runs
